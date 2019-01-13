@@ -17,3 +17,13 @@ $container['logger'] = function ($c) {
     $logger->pushHandler(new Monolog\Handler\StreamHandler($settings['path'], $settings['level']));
     return $logger;
 };
+
+// Configuração com o banco...
+$container['db'] = function ($c) {
+  $manager = new \Illuminate\Database\Capsule\Manager;
+  $manager->addConnection($c->get('settings')['db']);
+  $manager->setAsGlobal();
+  $manager->bootEloquent();
+
+  return $manager->getConnection('default');
+};
