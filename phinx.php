@@ -20,7 +20,7 @@ return [
     'paths' => [
       'migrations' => __DIR__ . '/src/db/migrations'
   ],
-    'enviroments' => [
+    'environments' => [
         'default_database' => 'development',
         'development' => [
             'name' => $container->get('settings')['db']['database'],
