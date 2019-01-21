@@ -17,7 +17,7 @@ class User extends Eloquent
 
     protected $hidden = ['password'];
 
-    public function setPasswordAttribute($key, $value)
+    public function setPasswordAttribute($value)
     {
         if(!empty($value)){
             $this->attributes['password'] = password_hash($value, PASSWORD_DEFAULT);
