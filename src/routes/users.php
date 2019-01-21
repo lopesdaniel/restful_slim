@@ -19,7 +19,7 @@ $app->get('/api/v1/users', function (Request $request, Response $response, array
 $app->post('/api/v1/users', function (Request $request, Response $response, array $args){
     $data = $request->getParsedBody();
     $user = User::create($data);
-    return $response->withJson($user);
+    return $response->withJson($user, 201);
 });
 
 $app->get('/api/v1/users/{id}', function (Request $request, Response $response, array $args){
