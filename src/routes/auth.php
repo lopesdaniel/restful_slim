@@ -9,8 +9,8 @@ use App\Models\User;
 $app->post('/auth/token', function (Request $request, Response $response, array $args){
     $data = $request->getParsedBody();
 
-    $email = $data['email'];
-    $password = $data['password'];
+    $email = $data['email'] ?? null;
+    $password = $data['password'] ?? null;
 
     $user = User::where('email', $email)->first();
 
@@ -18,7 +18,6 @@ $app->post('/auth/token', function (Request $request, Response $response, array 
         $key = $this->get('settings')['secretKey'];
 
         return $response->withJson(['token' => JWT::encode($user, $key)]);
-
     }
 
     return $response->withJson(['status' => 'erro'], 401);
